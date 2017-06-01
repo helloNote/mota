@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" href="css/css.css"/>
+</head>
+<body>
+<div class="box" id="box">
+    <div class="first div" style="opacity: 1;z-index: 4">
+            <p class="t1"> 游戏正在加载，请耐心等待......</p>
+            <div class="loading">
+            <div id="l1" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <div class="second div" style="opacity: 0; z-index: 1">
+            <p class="in_box1" >
+                LX制作
+            </p>
+        </div>
+
+        <div class="third div" style="opacity: 0;z-index: 1">
+                <div id="top">
+                    <p class="text1">魔塔</p>
+                    <img src="img/1.png" alt="" class="i"/>
+                </div>
+                <div class="text">
+                    <p class="text2" onmousemove="first()" onmouseout="first2()" onclick="big()" >
+                        开始游戏
+                    </p>
+                    <p class="text2" onmousemove="first3()" onmouseout="first3_1()" onclick="second()">游戏说明</p>
+                    <p class="text2" onmousemove="first4()" onmouseout="first4_1()">结束游戏</p>
+                    <div class="raido"></div>
+                    <div class="raido1"></div>
+                    <div class="raido2"></div>
+                </div>
+
+        </div>
+
+            <div class="forth">
+                <img src="img/space.png" alt="" class="ii1"/>
+                <div class="iii">
+                    <div class="ii">
+                        <img src="img/t1.png" alt=""/>
+                        <img src="img/t2.png" alt=""/>
+                        <img src="img/t3.png" alt=""/>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<div class="mota">关闭</div>
+<div class="alert">
+    <div class="a1">
+        <span>妖怪</span>
+        <div class="Blood">
+            <span>血量条</span>
+            <div class="blood" id="blood"></div>
+        </div>
+        <img src="img/vs.png" alt="" class="vs"/>
+    </div>
+    <div class="a2">
+        <span>勇士</span>
+        <div class="Blood1">
+            <span>血量条</span>
+            <div class="blood1" id="blood1"></div>
+        </div>
+    </div>
+</div>
+<div class="alert1">勇士胜利!!!!</div>
+<div class="yaos">恭喜你，获得了一瓶药水，血量条+10</div>
+<div class="stair1">第一层</div>
+<div class="stair1">第二层</div>
+<div class="stair1">第三层</div>
+<div class="pass_stop" id="pass_stop" style="display: none">
+    <p>亲爱的，亲爱的玩家</p>
+    <p>功夫不负有心人</p>
+        <h1>你终于通关了</h1>
+        <h2>你终于通关了</h2>
+        <h3>你终于通关了</h3>
+        <h4>你终于通关了</h4>
+</div>
+<div class="died" id="died">
+    <p style="padding-top: 30px">亲</p>
+    <p>你的血槽已空</p>
+    <p>请重新刷新页面</p>
+    <p>加油!!!</p>
+    <img src="img/timg.gif" alt=""/>
+</div>
+<div class="begin" id="begin">
+    <p>亲,尽情的挥洒你的汗水吧</p>
+    <p>请打掉所以的怪物</p>
+    <p>GO！！！！</p>
+</div>
+  <!--  <div class="explain" >
+        <img src="img/close.png" alt="" class="img1" id="img1"/>
+        <img src="img/close1.png" alt="" class="img5" id="img5"/>
+        <div class="t">
+            <img src="img/text2.png" alt="" class="img2" />
+            <img src="img/text1.png" alt=""/>
+        </div>
+        <img src="img/next.png" alt="" class="img3" id="img3"/>
+        <img src="img/next1.png" alt="" class="img4" id="img4"/>
+    </div>-->
+
+<script>
+    ////////////////////////变量区//////////////////////////////
+    var W_x = 15,W_y = 5;//游戏的控制的位置
+    var text2=document.getElementsByClassName("text2");
+    var raido=document.getElementsByClassName("raido")[0];
+    var raido1=document.getElementsByClassName("raido1")[0];
+    var raido2=document.getElementsByClassName("raido2")[0];
+    var a=document.getElementsByClassName("div");
+    var b=0;
+    var stop;
+    var third=document.getElementsByClassName("third")[0];
+    var forth=document.getElementsByClassName("forth")[0];
+    var ii=document.getElementsByClassName("ii")[0];
+    var ii1=document.getElementsByClassName("ii1")[0];
+    var h=20;
+    var t=300;
+    var set;
+    var set1;
+    var aler2=document.getElementsByClassName("alert2")[0];
+    var aler=document.getElementsByClassName("alert")[0];
+    var aler1=document.getElementsByClassName("alert1")[0];
+    var yaos=document.getElementsByClassName("yaos")[0];
+    var st;
+    var stair1=document.getElementsByClassName("stair1");
+    var g=0;
+    var died=document.getElementById("died");
+    var pass1=document.getElementById("pass_stop");
+    var begin=document.getElementById("begin");
+    ////////////////////////函数区//////////////////////////////
+    //进度条
+    function run(){
+        var  l1= document.getElementById("l1");
+        var timeout;
+        l1.style.width=parseInt(l1.style.width) + 2 + "%";
+        if(l1.style.width == "100%"){
+            window.clearTimeout(timeout);
+            return;
+        }
+        timeout=window.setTimeout("run()",100);
+    }
+    run();
+    //开始游戏和游戏说明和游戏结束
+    //移入显示
+    function first(){
+        raido.style.display="block";
+    }
+    function first3(){
+        raido1.style.display="block";
+    }
+    function first4(){
+        raido2.style.display="block";
+    }
+    //移除隐藏
+    function first2(){
+        raido.style.display="none";}
+    function first3_1(){
+        raido1.style.display="none";}
+
+    function first4_1(){
+        raido2.style.display="none";}
+
+    //前言的轮播
+    function xunhuan(){
+        for(var i=0;i<a.length;i++){
+            a[i].style.zIndex=1;
+            a[i].style.opacity=0;
+        }
+        a[b].style.opacity=1;
+        a[b].style.zIndex=4;
+        b++;
+        if(b==3){
+            clearInterval(stop);
+        }
+    }
+    stop=setInterval("xunhuan()",4000);//会开辟一个新的空间，不可控*/
+
+    //关闭浏览器窗口
+    var cl=document.getElementsByClassName("mota")[0];
+     cl.addEventListener("click",function(){
+     window.opener=null;
+     window.open('','_self');
+     window.close();
+     });
+    //0通道
+    //1墙
+    //3主角
+    //4怪物1
+    //5怪物2
+    //8药水
+    //6，7上楼
+    //10,11下楼
+    //12
+    var arry=[
+     [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+     [1,1,8,8,8,1,0,1,1,1,1,1,1,0,0,0],
+     [1,1,8,8,8,1,0,0,4,5,4,4,1,0,0,0],
+     [1,1,4,4,4,1,0,1,0,8,8,0,1,0,0,0],
+     [1,1,0,0,0,0,0,1,1,1,1,1,1,0,0,0],
+     [1,1,0,0,0,1,0,0,0,0,0,0,0,5,0,0],
+     [1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1],
+     [1,1,8,8,8,1,0,1,5,8,8,8,5,5,5,8],
+     [1,1,0,0,4,0,0,1,0,4,5,5,0,0,0,0],
+     [1,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0],
+     [1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0],
+     [1,1,5,5,5,0,0,1,1,0,1,1,1,1,1,1],
+     [1,1,8,8,8,1,0,5,1,4,8,8,8,8,8,8],
+     [1,1,1,1,1,1,0,0,1,12,12,12,12,12,12,12],
+     [1,1,0,0,0,3,0,0,1,12,12,12,12,12,12,12]
+     ];
+     var arry1=[
+     [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,7],
+     [0,0,0,0,0,1,4,0,0,0,1,0,0,0,0,0],
+     [5,1,5,5,0,1,1,1,1,1,1,0,0,0,1,0],
+     [0,1,4,4,0,0,8,8,8,5,0,0,1,0,0,0],
+     [0,1,0,0,0,1,4,5,4,4,1,5,1,0,0,0],
+     [0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0],
+     [0,1,0,0,0,1,0,0,0,0,1,0,1,0,0,0],
+     [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+     [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+     [0,1,8,8,4,0,0,8,8,8,1,1,0,1,0,0],
+     [0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0],
+     [0,1,0,0,0,1,1,1,1,0,0,0,1,1,1,1],
+     [0,1,4,0,0,1,1,8,5,0,1,0,0,0,0,0],
+     [0,1,1,1,1,1,1,1,1,1,1,0,0,1,5,4],
+     [0,1,12,12,12,1,12,12,12,12,1,12,12,1,1,10]
+     ];
+     var arry2=[
+     [0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0],
+     [0,0,0,0,0,1,4,0,0,0,0,0,0,0,0,0],
+     [1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,0],
+     [1,5,5,1,0,0,0,0,0,5,8,1,1,0,0,0],
+     [1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0],
+     [1,1,0,1,1,1,0,1,1,1,0,0,0,0,0,0],
+     [0,1,0,0,0,5,5,1,0,0,0,0,1,0,0,0],
+     [0,1,0,0,0,4,1,1,1,1,1,1,1,1,1,1],
+     [0,1,0,0,0,0,1,4,4,8,1,12,12,12,5,8],
+     [0,1,0,0,0,0,1,5,4,4,1,12,12,12,0,0],
+     [0,0,0,0,0,0,1,0,0,0,1,12,12,12,0,0],
+     [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+     [0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,5],
+     [0,1,4,0,0,0,1,0,0,0,0,0,0,8,8,8],
+     [0,1,1,1,1,1,1,0,0,0,0,0,0,8,8,8],
+     [11,12,12,12,12,12,12,0,0,0,0,0,0,8,8,8]
+     ];
+     //点击开始游戏后，滚动字
+     function big(){
+     third.style.display="none";
+         ii1.style.display="block";
+     ii.style.top=-670+"px";
+     setTimeout("big1(arry);",10000);
+     }
+     document.body.onkeydown = space;
+     function space(){
+     if(window.event.keyCode == 32){
+         ii1.style.display="none";
+     big1(arry);
+     }
+     }
+     //进入游戏
+    ///血量的加减
+    function time(){
+        h--;
+        document.getElementById("blood").innerText=h;
+        if(h==0){
+            clearTimeout(set);
+            h=20;
+        }else{
+            set= window.setTimeout("time()",70);
+        }
+
+    }
+    function time1( ){
+        t--;
+        document.getElementById("blood1").innerText=t;
+        if(t <=0){
+            clearTimeout(set);
+            clearTimeout(st);
+            aler1.style.display="none";
+            aler.style.display="none";
+            ii1.style.display="none";
+           died.style.display="block";
+        }else{
+            set= window.setTimeout("time1()",70);
+        }
+    }
+        function time2(){
+            t=t+10;
+            document.getElementById("blood1").innerText=t;
+        }
+     function big1(date){
+
+         function page1(){
+         var even=event.keyCode;
+         if(even==37){
+         if(W_y >0){
+         go("left",0,-1);
+         }
+         page("left",date);
+         }
+         if(even==38){
+         if(W_x>0){
+         go("top",-1,0);
+         }
+         page("top",date);
+         }
+         if(even==39){
+         if(W_y<15){
+         go("right",0,1);
+         }
+         page("right",date);
+         }
+         if(even==40){
+         if(W_x<15){
+         go("bottom",1,0);
+         }
+         page("bottom",date);
+         }
+
+         }
+         function go(str,chang_x,change_y) {
+         if (date[W_x + chang_x][W_y + change_y] == 0) {
+         date[W_x][W_y] = 0;
+         W_x = W_x + chang_x;
+         W_y = W_y + change_y;
+         date[W_x][W_y] = 3;
+         }else if(date[W_x + chang_x][W_y + change_y] == 4 ||date[W_x + chang_x][W_y + change_y] == 5){
+            monster(W_x + chang_x,W_y + change_y)
+         }else if(date[W_x + chang_x][W_y + change_y] == 6){
+            big1(arry1);
+             arry1[14][15]=0;
+             //楼层
+             stair1[1].style.display="block";
+             setTimeout(function(){
+                 stair1[1].style.display="none";
+             },1000)
+         }else if(date[W_x + chang_x][W_y + change_y] == 7){
+            big1(arry2);
+             arry2[14][0]=0;
+             //楼层
+             stair1[2].style.display="block";
+             setTimeout(function(){
+                 stair1[2].style.display="none";
+             },1000)
+         }else if(date[W_x + chang_x][W_y + change_y] == 8){
+             jiaxue(W_x + chang_x,W_y + change_y)
+         }else if(date[W_x + chang_x][W_y + change_y] == 10){
+             big1(arry);
+             arry[0][1]=0;
+             //楼层
+             stair1[0].style.display="block";
+             setTimeout(function(){
+                 stair1[0].style.display="none";
+             },1000)
+         }else if(date[W_x + chang_x][W_y + change_y] == 11){
+                 big1(arry1);
+             arry1[1][15]=0;
+             //楼层
+                 stair1[1].style.display="block";
+             setTimeout(function(){
+                 stair1[1].style.display="none";
+             },1000)
+          }
+         }
+         //怪物的函数
+         function monster(x,y){
+             g++;
+         aler.style.display="block";
+             time1( );
+             time( );
+        st=setTimeout(function(){
+           aler1.style.display="block";
+             },1500);
+         setTimeout(function(){
+         aler.style.display="none";
+        aler1.style.display="none";
+         date[x][y]=0;
+         page();//刷新
+         },2000);
+            if(g==52){
+                setTimeout(function(){
+                    ii1.style.display="none";
+                    pass1.style.display="block";
+                },2000)
+
+            }
+         }
+            //血量的函数
+             function jiaxue(x,y){
+                 yaos.style.display="block";
+                 time2();
+                 setTimeout(function(){
+                     yaos.style.display="none";
+                     date[x][y]=0;
+                     page();//刷新
+                 },500)
+             }
+
+         document.body.onkeydown = page1;
+         //地图函数
+         function page(n,arr){
+         var a1 = "";
+         for(var i=0;i<date.length;i++){
+         for(var j=0;j<date[i].length;j++){
+         if(date[i][j]==0){
+         a1 = a1+"<img src='img/3.png'  class='pass'/>";
+         }else if(date[i][j]==1){
+         a1 = a1+"<img src='img/2.png' class='wall'/>";
+         }else if(date[i][j]==3){
+         if(n=="top"){
+         a1 = a1+"<img src='img/persont.png' class='car'/>";
+         }else if(n=="bottom"){
+         a1 = a1+"<img src='img/4.png' class='car'/>";
+         }else if(n=="left"){
+         a1 = a1+"<img src='img/carl.png' class='car'/>";
+         }else if(n=="right"){
+         a1 = a1+"<img src='img/personr.png' class='car'/>";
+         }else{
+         a1 = a1+"<img src='img/4.png' class='car'/>";
+         }
+
+         }else if(date[i][j]==2){
+         a1 = a1+"<img src='img/5.png' class='jinlin'/>";
+         }else if(date[i][j]==6||date[i][j]==7){
+         a1 = a1+"<img src='img/stair.png' class='stair'/>";
+         }else if(date[i][j]==4){
+         a1 = a1+"<img src='img/monster1.png' class='monster'/>";
+         }else if(date[i][j]==5){
+         a1 = a1+"<img src='img/monster2.png' class='monster1'/>";
+         }else if(date[i][j]==8){
+             a1 = a1+"<img src='img/yao.png' class='yao'/>";
+         }else if(date[i][j]==10){
+             a1 = a1+"<img src='img/xl.png' class='xl'/>";
+         }else if(date[i][j]==11){
+             a1 = a1+"<img src='img/xl.png' class='xl'/>";
+         }else if(date[i][j]==12){
+             a1 = a1+"<img src='img/river.png' class='river'/>";
+         }
+         }
+         }
+         document.getElementById("box").innerHTML =a1;
+         }
+         page();
+
+     }
+
+
+
+/*    //游戏的说明
+var img3=document.getElementById("img3");
+var img4=document.getElementById("img4");
+    function second(){
+        img3.addEventListener("mouseover",function(){
+            img4.style.display="block";
+        });
+        img3.addEventListener("mouseout",function(){
+            img4.style.display="none";
+        });
+//游戏的说明关闭
+        var img1=document.getElementById("img1");
+        var img5=document.getElementById("img5");
+        img1.addEventListener("mouseover",function(){
+            img5.style.display="block";
+        });
+        img1.addEventListener("mouseout",function(){
+            img5.style.display="none";
+
+        });
+
+    }*/
+
+</script>
+</body>
+</html>
